@@ -1,0 +1,77 @@
+# We need to use a lower controller frequency. Otherwise we seem to
+# run into buffering problems in rosserial.
+controller_frequency: 10
+# Give the local planner only 5 seconds time to find a vaid control.
+controller_patience: 5.0
+recovery_behaviour_enabled: true
+base_local_planner: dwa_local_planner/DWAPlannerROS
+recovery_behaviors:
+  - name: aggressive_reset
+    type: clear_costmap_recovery/ClearCostmapRecovery
+
+# Configuration for recovery behaviors
+aggressive_reset:
+  # When doing an aggressive reset, remove all voxels from the
+  # costmap.
+  reset_distance: 0.02
+
+# See also costmap_common_params.yaml for additional parameters set
+# for the two costmaps.
+
+DWAPlannerROS:
+
+  max_rot_vel: 1.0
+  min_rot_vel: 0.2
+
+  max_vel_x: 0.350
+  min_vel_x: 0.20
+  max_vel_y: 0
+  min_vel_y: 0
+
+  max_vel_theta: 0.10
+  min_in_place_vel_theta: 0.2
+  max_rot_vel: 0.6
+  min_rot_vel: 0.2
+ 
+  acc_lim_th: 0.5
+  acc_lim_x: 0.30
+  acc_lim_y: 0.30
+
+  max_trans_vel: 0.350
+  min_trans_vel: 0.2
+    
+  # These are guessed tolerance values. Yaw tolerance should be about
+  # 45 degree and xy tolerance within a foot.
+  yaw_goal_tolerance: 0.60  # radians
+  xy_goal_tolerance: 0.2  # meters
+  # We increase the stop_time_buffer
+  # because we have a pretty high latency on the controller. A small
+  # stop_time_buffer would cause the robot to crash into obstacles
+  # more often.
+  stop_time_buffer: 0.8
+  # Increase the path_distance_bias to make the robot follow the global plan
+  # more closely.
+  latch_xy_goal_tolerance: true
+  path_distance_bias: 10.0
+#  vx_samples: 10
+#  vy_samples: 1
+  occdist_scale: 0.2
+  sim_time: 5.0 #3.0
+
+# We need to kape the min_in_place_rotational_vel since it is used by
+# the rotate recovery.
+
+NavfnROS:
+  allow_unknown: false
+  default_tolerance: 0.5
+#  visualize_potential: true
+#  cost_factor: 0.55
+#  neutral_cost: 66
+
+
+
+
+
+
+
+

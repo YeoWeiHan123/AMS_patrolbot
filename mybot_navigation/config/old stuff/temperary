@@ -1,0 +1,39 @@
+
+#########################
+
+proxemic_layer:
+  observation_sources:      peopleone
+  enabled:                  true
+  cutoff:                   10.0
+  amplitude:                77
+  covariance:               0.25
+  factor:                   5.0
+  keep_time:                0.75
+
+  peopleone: 
+    data_type:              people_msgs/People
+    topic:                  /people  
+    marking:                true 
+    clearing:               true 
+    map_type:               costmap
+    inflation_radius:       1.2
+
+#########################
+
+passing_layer:
+  observation_sources:      peopletwo
+  enabled:                  true
+  cutoff:                   10.0
+  amplitude:                77 
+  covariance:               0.25
+  factor:                   5.0
+  keep_time:                0.75
+
+  peopletwo: 
+    data_type:             people_msgs/People
+    topic:                 /people  
+    marking:               true 
+    clearing:              true 
+    map_type:              costmap
+    inflation_radius:      1.2
+

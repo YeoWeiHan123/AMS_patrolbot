@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="gamepad_dev" default="/dev/input/js0" />
+  <node pkg="joy" type="joy_node" name="joy_node">
+	<param name="dev" type="str" value="$(arg gamepad_dev)" />
+  </node>
+
+  <arg name="cmd_vel" default="joy_vel" />
+  <arg name="teleop_config" default="$(find mybot_navigation)/config/joy_teleop.yaml" />
+  <rosparam file="$(arg teleop_config)" command="load" />
+  <node pkg="joy_teleop" type="joy_teleop.py" name="joy_teleop">
+    <remap from="cmd_vel" to="$(arg cmd_vel)" />
+  </node>
+
+  <!--node pkg="key_teleop" type="key_teleop.py" name="key_teleop">
+  </node-->
+
+</launch>

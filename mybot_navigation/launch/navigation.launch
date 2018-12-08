@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!--include file="$(find mybot_navigation)/launch/teleop.launch"></include-->
+
+  <!--include file="$(find mybot_navigation)/launch/twist_mux.launch"></include-->
+
+  <!-- start TCP node -->
+  <node name="server_node" pkg="comm_tcp" type="server_node" args="8080" output="screen"/>
+
+<include file="$(find urg_node)/launch/urg_lidar.launch"/>				<!--starts two lidar-->
+
+<include file="$(find ira_laser_tools)/launch/laserscan_multi_merger.launch"/>	<!--merger two hokuyo laser-->
+
+<include file="$(find mybot_navigation)/launch/mybot_teleop.launch"/>		<!--starts RosAria + teleop-->
+
+<!--include file="/home/fmr/new_npbot/src/realsense_samples_ros/launch/demo_zr300_camera.launch"/-->	<!--launch ZR300 camera-->
+
+<include file="$(find realsense_camera)/launch/zr300_nodelet_default.launch"/>	<!--launch ZR300 camera-->
+
+<include file="$(find mybot_navigation)/launch/amcl_demo.launch"/>			<!--brings out move base node and load save map-->
+
+<include file="$(find mybot_description)/launch/mybot_rviz_amcl.launch"/>		<!--opens rviz-->
+
+<include file="$(find mybot_navigation)/launch/pcl_voxel_filter.launch"/>		<!--opens pointcloud filter-->
+
+<!--include file="/home/fmr/new_npbot/src/mybot_navigation/launch/pointcloud_to_LaserScan.launch"/-->	XX	<!--opens pointcloud filter-->
+
+<!--include file="/home/fmr/new_npbot/src/bwi_common/multi_level_map_utils/launch/example.launch"/-->##
+
+<!--include file="/home/fmr/new_npbot/src/people/people_velocity_tracker/launch/filtered_tracked_detector.launch"/>****
+
+<include file="/home/fmr/new_npbot/src/people/people_tracking_filter/launch/filter.launch"/--> ****
+
+<!--include file="/home/fmr/new_npbot/src/rosbridge_suite/rosbridge_server/launch/rosbridge_websocket.launch"/-->
+
+<!--include file="/home/fmr/new_npbot/src/viso2/viso2_ros/launch/demo.launch"/-->this
+
+<include file="$(find rf2o_laser_odometry)/launch/rf2o_laser_odometry.launch"/>##
+
+###############################################################################################################
+____ROBOT_LOCALISATION___ROBOT_LOCALISATION___ROBOT_LOCALISATION___ROBOT_LOCALISATION___ROBOT_LOCALISATION____
+
+<!--include file="$(find robot_localization)/launch/ukf_template.launch"/-->##
+
+<include file="$(find robot_localization)/launch/ekf_template.launch"/>##
+
+<!--include file="/home/fmr/new_npbot/src/robot_localization/launch/navsat_transform_template.launch"/-->##
+
+<!--include file="/home/fmr/new_npbot/src/robot_localization/launch/dual_ekf_navsat_example.launch"/-->
+
+###############################################################################################################
+
+<!--include file="/home/fmr/new_npbot/src/gps_umd/gps_common/launch/fix_translator.launch"/-->
+
+<include file="$(find mtig_driver)/launch/mtig_driver.launch"/>##
+
+<!--include file="/home/fmr/new_npbot/src/velodyne/velodyne_pointcloud/launch/VLP16_points.launch"/-->  must?
+
+<include file="$(find imu_complementary_filter)/launch/complementary_filter.launch"/>##
+
+<include file="$(find follow_waypoints)/launch/follow_waypoints.launch"/>##
+
+<!--include file="/home/fmr/new_npbot/src/leg_tracker/launch/individual_leg_tracker.launch"/-->
+
+<!--include file="$(find leg_tracker)/launch/joint_leg_tracker.launch"/-->
+
+<!--include file="$(find laser_scan_sparsifier)/demo/demo.launch"/--> ##
+
+<!--include file="/home/fmr/new_npbot/src/ros-video-recorder/launch/cam2x2grid.launch"/-->
+
+<!--include file="$(find spencer_people_tracking)/launch/spencer_people_tracking_launch/launch/spencer.launch"/-->
+
+<!--include file="$(find map_laser)/lfilter.launch"/-->
+
+<!--include file="$(find mrpt_localization)/launch/demo.launch"/-->
+
+</launch>

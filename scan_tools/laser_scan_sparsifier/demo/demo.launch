@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+  <!--node pkg="laser_scan_sparsifier" type="laser_scan_sparsifier_node" name="sparsifier" output="screen"-->
+    <!--remap from="scan" to="scan_filtered" /-->
+    <!--param name="step" value="3"/>
+    <param name="skip" value="0"/>
+  </node-->
+
+  <node pkg="laser_scan_sparsifier" type="laser_scan_sparsifier_node" name="sparsifier_bottom" output="screen">
+    <remap from="scan" to="scan_bottom" />
+    <param name="step" value="3"/>
+    <param name="skip" value="0"/>
+    <remap from="scan_sparse" to="scan_sparse_bottom" />
+  </node>
+</launch>
+
+

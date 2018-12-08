@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+
+<include file="/home/fmr/new_npbot/src/urg_node/launch/urg_lidar.launch"/>					<!--starts two lidar-->
+
+<include file="/home/fmr/new_npbot/src/ira_laser_tools/launch/laserscan_multi_merger.launch"/>		<!--merger two hokuyo laser-->
+
+<include file="/home/fmr/new_npbot/src/mybot_navigation/launch/mybot_teleop.launch"/>			<!--starts RosAria + teleop-->
+
+<include file="/home/fmr/new_npbot/src/slam_gmapping/gmapping/launch/slam_gmapping_pr2.launch"/>		<!--starts gmapping-->
+
+<include file="/home/fmr/new_npbot/src/mybot_description/launch/mybot_rviz_amcl.launch"/>		<!--opens rviz-->
+
+<include file="/home/fmr/new_npbot/src/mtig_driver/launch/mtig_driver.launch"/>
+
+<!--include file="/home/fmr/NPBot/src/realsense_camera/launch/zr300_nodelet_default.launch"/-->		<!--setup realsense camera-->
+
+<!--include file="/home/fmr/npbot/src/mybot_description/launch/mybot_rviz_gmapping.launch"/-->		<!--opens rviz-->
+
+</launch> 	

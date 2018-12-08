@@ -1,0 +1,17 @@
+global_costmap:
+   global_frame: map
+   robot_base_frame: base_link
+   update_frequency: 1
+   publish_frequency: 1
+   static_map: false
+   rolling_window: false   # The global map is generally not updated as the robot moves to we set this parameter to false
+   transform_tolerance: 0.5
+   plugins:
+     - {name: static_layer,            type: "costmap_2d::StaticLayer"}
+     - {name: obstacle_layer,          type: "costmap_2d::ObstacleLayer"}
+#     - {name: inflation_layer,         type: "costmap_2d::InflationLayer"}
+#     - {name: obstacle_layer,          type: "costmap_2d::VoxelLayer"}
+#     - {name: voxel_layer,             type: "costmap_2d::VoxelLayer"}
+#    - {name: social_layer,           type: "social_navigation_layers::ProxemicLayer"}
+#    - {name: social_pass_layer,   type: "social_navigation_layers::PassingLayer"}
+#     - {name: costmap_prohibition_layer,       type: "costmap_prohibition_layer_namespace::CostmapProhibitionLayer"}

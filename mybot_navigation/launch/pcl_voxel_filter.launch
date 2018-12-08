@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="nodelet" type="nodelet" name="pcl_manager" args="manager" output="screen" />
+
+  <!-- Run a VoxelGrid filter to clean NaNs and downsample the data -->
+  <node pkg="nodelet" type="nodelet" name="voxel_grid" args="load pcl/VoxelGrid pcl_manager" output="screen">
+    <remap from="~input" to="/camera/depth/points" />
+    <rosparam>
+      filter_field_name: z
+      filter_limit_min: 0.05
+      filter_limit_max: 2.0
+      filter_limit_negative: False
+      leaf_size: 0.50
+    </rosparam>
+  </node>
+
+
+ <!-- Run a passthrough filter to clean NaNs -->
+  <node pkg="nodelet" type="nodelet" name="passthrough" args="load pcl/PassThrough pcl_manager" output="screen">
+    <remap from="~input" to="/voxel_grid/output" />
+    <rosparam>
+      filter_field_name: z
+      filter_limit_min: 0.05
+      filter_limit_max: 2.0
+      filter_limit_negative: False
+    </rosparam>
+  </node>
+</launch>

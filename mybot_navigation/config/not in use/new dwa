@@ -1,0 +1,38 @@
+#DWAPlannerROS:
+
+#  max_vel_x: 0.350
+#  min_vel_x: 0.30
+#  max_vel_y: 0
+#  min_vel_y: 0
+
+#  max_vel_theta: 0.350
+#  min_in_place_vel_theta: 0.30
+#  max_rot_vel: 0.3
+#  min_rot_vel: 0.25
+ 
+#  acc_lim_th: 0.5
+#  acc_lim_x: 0.30
+#  acc_lim_y: 0.30
+
+#  max_trans_vel: 0.350
+#  min_trans_vel: 0.30
+  
+  # These are guessed tolerance values. Yaw tolerance should be about
+  # 45 degree and xy tolerance within a foot.
+#  yaw_goal_tolerance: 0.20  # radians
+#  xy_goal_tolerance: 0.1  # meters
+  # We increase the stop_time_buffer
+  # because we have a pretty high latency on the controller. A small 
+  # stop_time_buffer would cause the robot to crash into obstacles
+  # more often.
+#  stop_time_buffer: 3.0
+  # Increase the path_distance_bias to make the robot follow the global plan
+  # more closely.
+#  latch_xy_goal_tolerance: true
+#  path_distance_bias: 10.0
+#  vx_samples: 50
+#  vy_samples: 20
+#  occdist_scale: 0.2
+#  sim_time: 5.0 #3.0
+#  sim_granularity: 0.05
+#  publish_cost_grid: true

@@ -1,0 +1,76 @@
+# Move base node parameters. For full documentation of the parameters in this file, please see
+#
+#  http://www.ros.org/wiki/move_base
+#
+shutdown_costmaps: false
+recovery_behaviour_enabled: true
+
+controller_frequency: 12.0
+controller_patience: 20.0
+clearing_rotation_allowed: true
+planner_frequency: 10.0
+planner_patience: 5.0
+max_planning_retries: 1.0
+oscillation_timeout: 0.0
+oscillation_distance: 0.1
+#base_local_planner: "base_local_planner/TrajectoryPlannerROS"
+base_local_planner: "dwa_local_planner/DWAPlannerROS"
+#base_local_planner: "teb_local_planner/TebLocalPlannerROS"
+base_global_planner: "navfn/NavfnROS"
+
+recovery_behaviors:
+  - name: 'conservative_reset'
+    type: 'clear_costmap_recovery/ClearCostmapRecovery'
+#  - name: 'stepback_and_steerturn_recovery' 
+#    type: stepback_and_steerturn_recovery/StepBackAndSteerTurnRecovery
+#  - name: 'car_maneuver_recovery'
+#    type: 'car_maneuver_recovery/CarManeuverRecovery'
+  - name: 'aggressive_reset'
+    type: 'clear_costmap_recovery/ClearCostmapRecovery'
+
+conservative_reset:
+  reset_distance: 0.05
+  layer_names: ['obstacle_layer']
+
+aggressive_reset:
+  reset_distance: 0.01
+  layer_names: ['obstacle_layer']
+
+  # car_maneuver_recovery parameters
+car_maneuver_recovery:
+    four_wheel_steering: False
+    crab_steering: False
+    recovery_speed: 0.1
+    recovery_steering_angle: 0.0
+    wheelbase: 0.32
+    escape_cost_threshold: 128
+    timeout: 10.0
+    display_costs: False
+
+step_back_and_max_steer_recovery:
+    # True, If you want to turn only the first one
+    only_single_steering: true
+    # Number of recovery action trials [times]
+    trial_times         : 3
+    # Allowable distance to obstacles [m]
+    # Stop when an obstacle nearest to the moving direction appears within this distance during movement
+    obstacle_patience   : 0.3
+    # Frequency of checking obstacles during movement [times / sec]
+    obstacle_check_frequency: 5.0
+    # Angle resolution at obstacle search [rad] costmap Adjust when you want to reduce access count.
+    sim_angle_resolution: 0.1
+    # SIM update cycle at obstacle search [times / sec] costmap Adjust when you want to reduce access count
+    simulation_frequency    : 5
+    # back (Speed ​​at initial retraction [m / s], moving distance [m], timeout [sec])
+    linear_vel_back     : -0.3
+    step_back_length    : 1.0
+    step_back_timeout   : 15.0
+    # steer (Speed ​​at turn [rad / s], Target rotation angle [rad], Timeout [sec])
+    linear_vel_steer    : 0.3
+    angular_speed_steer : 0.5
+    turn_angle          : 1.5
+    steering_timeout    : 15.0
+    # forward (turning → straight → forward speed [m / s] when turning, target moving distance [m], timeout [sec])
+    linear_vel_forward  : 0.3
+    step_forward_length : 1.0
+    step_forward_timeout: 15.0

@@ -1,0 +1,25 @@
+obstacle_range: 3.5
+raytrace_range: 4.0
+#footprint: [[x0, y0], [x1, y1], ... [xn, yn]]
+#robot_radius: ir_of_robot
+#footprint: [[-0.30, -0.10], [-0.30, 0.10], [0.20, 0.10], [0.20, 0.0], [0.10, -0.10]]
+#footprint_padding: 0.23
+robot_radius: 0.26 # distance a circular robot should be clear of the obstacle
+inflation_radius: 0.20
+cost_scaling_factor: 10.0
+
+lethal_cost_threshold: 100
+
+#combination_method: 1
+# for debugging only, let's you see the entire voxel grid
+
+observation_sources: cloud_obstacles2 laser_scan_sensor #point_cloud_sensor laser_scan_sensor  point_cloud_sensor
+
+
+# marking - add obstacle information to cost map
+# clearing - clear obstacle information to cost map
+laser_scan_sensor: {sensor_frame: laser, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
+point_cloud_sensor: {sensor_frame: sonar, data_type: PointCloud, topic: RosAria/sonar, marking: true, clearing: true}
+cloud_obstacles2: {sensor_frame: camera_depth_frame, data_type: PointCloud2, topic: /passthrough/output, marking: true, clearing: true}
+#cloud_obstacles: {sensor_frame: camera_depth_frame, data_type: PointCloud2, topic: /voxel_grid/output, marking: true, clearing: true}
+#point_cloud_sensor: {sensor_frame: frame_name, data_type: PointCloud, topic: topic_name, marking: true, clearing: true}

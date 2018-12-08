@@ -1,0 +1,96 @@
+
+DWAPlannerROS: 
+
+  max_vel_x: 0.65
+  min_vel_x: 0.0 #0.3
+  max_vel_y: 0.5
+  min_vel_y: 0.2
+
+  max_vel_theta: 0.650
+  min_in_place_vel_theta: 0.60
+  min_in_place_rotational_vel: 0.5 #0.15 original 0.8
+  max_rot_vel: 0.70
+  min_rot_vel: 0.4 
+ 
+  acc_lim_th: 3.2
+  acc_lim_x: 2.5
+  acc_lim_y: 0.08
+
+  max_trans_vel: 0.6
+  min_trans_vel: 0.45
+  
+  # These are guessed tolerance values. Yaw tolerance should be about
+  # 45 degree and xy tolerance within a foot.
+  yaw_goal_tolerance: 1.0  #radians
+  xy_goal_tolerance: 0.450  # meters
+  # We increase the stop_time_buffer
+  # because we have a pretty high latency on the controller. A small 
+  # stop_time_buffer would cause the robot to crash into obstacles
+  # more often.
+  stop_time_buffer: 0.050
+  # Increase the path_distance_bias to make the robot follow the global plan
+  # more closely.
+  latch_xy_goal_tolerance: false
+  path_distance_bias: 32.0 ##32   5
+  goal_distance_bias: 24.0 ##24   10
+  vx_samples: 3
+  vy_samples: 10
+  vth_samples: 20
+  occdist_scale: 0.025 #initial 0.01 very sensitive to slight obstacle.
+  sim_time: 1.7 #3.0
+  sim_granularity: 0.035
+  publish_cost_grid: true
+
+  max_scaling_factor: 0.8
+  scaling_speed: 0.60
+
+  holonomic_robot: false
+
+##################################################################################
+
+TrajectoryPlannerROS: 
+  max_vel_x: 0.30
+  min_vel_x: 0.05
+  max_vel_theta: 0.10
+  min_in_place_vel_theta: 0.7
+  min_in_place_rotational_vel: 0.4 #0.15 original 0.8
+  max_rot_vel: 0.8
+  min_rot_vel: 0.4
+
+  sim_time: 3.0 #3.0
+#  path_distance_bias: 0.2 #--0.5 #--0.3
+#  goal_distance_bias: 0.2 #--0.3
+ 
+  acc_lim_theta: 0.5
+  acc_lim_x: 0.15
+  acc_lim_y: 0.0
+  visualize_potential: true
+
+  holonomic_robot: false
+
+  meter_scoring: true
+  yaw_goal_tolerance: 1.0 #2.0
+  xy_goal_tolerance: 0.2
+  publish_cost_grid: true
+  sim_granularity: 0.025
+  frequency: 5 #1
+  dwa: true
+  vx_samples: 3 #3 
+  publish_cost_grid_pc: true
+ 
+
+# costmap_converter/CostmapToPolygonsRANSAC
+# This plugin converts occupied cells to a set of lines (and points).
+#TebLocalPlannerROS:
+
+  ## Costmap converter plugin   
+
+#  #costmap_converter_plugin: "costmap_converter::CostmapToLinesDBSRANSAC"
+#  #costmap_converter_plugin: "costmap_converter::CostmapToLinesDBSMCCH"
+#  #costmap_converter_plugin: "costmap_converter::CostmapToPolygonsDBSConcaveHull"
+#  #costmap_converter_plugin: "" # deactivate plugin
+
+ 
+  ## Configure plugins (namespace move_base/TebLocalPlannerROS/PLUGINNAME)
+  ## The parameters must be added for each plugin separately
+
